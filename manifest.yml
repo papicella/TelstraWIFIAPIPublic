@@ -4,3 +4,5 @@ applications:
   instances: 1
   host: pas-telstrawifi
   path: ./target/TelstraWIFIAPIPublic-0.0.1-SNAPSHOT.jar
+  env:
+    JAVA_OPTS: -Djava.security.egd=file:///dev/urando
