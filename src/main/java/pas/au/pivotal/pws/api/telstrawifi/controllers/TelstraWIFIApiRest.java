@@ -19,19 +19,19 @@ public class TelstraWIFIApiRest
     private static final Logger log = LoggerFactory.getLogger(TelstraWIFIApiRest.class);
     private static final JsonParser parser = JsonParserFactory.getJsonParser();
 
-    @RequestMapping(value = "/sample", method = RequestMethod.GET)
-    public String sampleOuput()
-    {
-        return Utils.getHotspots("", "", "", true);
-    }
-
-    @RequestMapping(value = "/findhotspots", method = RequestMethod.GET)
-    public String sendSms(@RequestParam(value="latitude", required=true) String lat,
-                          @RequestParam(value="longitude", required=true) String lon,
-                          @RequestParam(value="radius", required=true) String radius)
-    {
-        return Utils.getHotspots(lat, lon, radius, false);
-    }
+//    @RequestMapping(value = "/sample", method = RequestMethod.GET)
+//    public String sampleOuput()
+//    {
+//        return Utils.getHotspots("", "", "", true);
+//    }
+//
+//    @RequestMapping(value = "/findhotspots", method = RequestMethod.GET)
+//    public String sendSms(@RequestParam(value="latitude", required=true) String lat,
+//                          @RequestParam(value="longitude", required=true) String lon,
+//                          @RequestParam(value="radius", required=true) String radius)
+//    {
+//        return Utils.getHotspots(lat, lon, radius, false);
+//    }
 
 
 }

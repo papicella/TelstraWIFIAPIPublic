@@ -1,5 +1,7 @@
 package pas.au.pivotal.pws.api.telstrawifi.controllers;
 
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 import pas.au.pivotal.pws.api.telstrawifi.Utils;
 import pas.au.pivotal.pws.api.telstrawifi.beans.WifiSpot;
 import org.slf4j.Logger;
@@ -8,10 +10,8 @@ import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +24,7 @@ public class TelstraWIFIApiController
     private static final JsonParser parser = JsonParserFactory.getJsonParser();
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String showSearchPage(Model model)
+    public String showSearchPage()
     {
         return "findhotspots";
     }
@@ -55,5 +55,13 @@ public class TelstraWIFIApiController
         model.addAttribute("hotspotscount", hotspots.size());
 
         return "findhotspots";
+    }
+
+    @RequestMapping(method = RequestMethod.POST,
+            value = "/hotspots/search",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    List<HotSpotAPIResponse> fetchLinks(@RequestBody LatLonRadRequest latLonRadRequest) throws IOException {
+        return Utils.getHotspots(latLonRadRequest.getLat(), latLonRadRequest.getLon(), latLonRadRequest.getRadius());
     }
 }
