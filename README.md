@@ -10,11 +10,13 @@ applications:
 - name: pas-telstrawifiapi-client
   memory: 512M
   instances: 1
-  host: pas-telstrawifi
+  random-route: true
   path: ./target/TelstraWIFIAPIPublic-0.0.1-SNAPSHOT.jar
+  env:
+    JAVA_OPTS: -Djava.security.egd=file:///dev/urando
 ```
 
-It can be accessed from a deployed instance on PWS using the link below.
+It can be accessed from a deployed instance on PWS using the link below which will be dependant on the route assigned on PWS.
 
 ```
 http://pas-telstrawifi.cfapps.io/
